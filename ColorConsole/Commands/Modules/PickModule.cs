@@ -9,7 +9,7 @@ namespace ColorConsole.Commands.Modules
     [Name("pick")]
     public class PickModule : ConsoleModuleBase<ColorConsumer>
     {
-        public string Get(bool toClipboard = true)
+        public string Get([Description("Sets if the color should automatically be set to your clipboard.")] bool toClipboard = true)
         {
             var format = Select(new SelectionPrompt<DisplayType>()
                     .PageSize(3)
@@ -21,12 +21,12 @@ namespace ColorConsole.Commands.Modules
 
         [Name("hex")]
         [Description("Gets the hex value of the current cursor position and copies it to the clipboard.")]
-        public static string Hex(bool toClipboard = true)
+        public static string Hex([Description("Sets if the color should automatically be set to your clipboard.")] bool toClipboard = true)
             => GetColorString(toClipboard, DisplayType.Hex);
 
         [Name("rgb")]
         [Description("Gets the RGB value of the current cursor position and copies it to the clipboard.")]
-        public static string Rgb(bool toClipboard = true)
+        public static string Rgb([Description("Sets if the color should automatically be set to your clipboard.")] bool toClipboard = true)
             => GetColorString(toClipboard, DisplayType.RGB);
 
         private static string GetColorString(bool toClipboard, DisplayType type)

@@ -105,7 +105,7 @@ namespace ColorConsole.Commands.Modules
         [Name("sort")]
         [Description("Sorts a range of colors into a sorted spectrum.")]
         [PrePadding, PostPadding]
-        public Task Sort([Name("gradient-steps")] int gradientSteps = 3)
+        public Task Sort([Name("gradient-steps"), Description("Sets how many steps of gradient the sort should do.")] int gradientSteps = 3)
         {
             return Sort(gradientSteps, [.. Spectrum.GetSortedSpectrum().Items]);
         }
@@ -113,7 +113,7 @@ namespace ColorConsole.Commands.Modules
         [Name("sort")]
         [Description("Sorts a range of colors into a sorted spectrum.")]
         [PrePadding, PostPadding]
-        public async Task Sort([Name("gradient-steps")] int gradientSteps, [Description("The range of colors to sort.")] params IntegrityColor[] colors)
+        public async Task Sort([Name("gradient-steps"), Description("Sets how many steps of gradient the sort should do.")] int gradientSteps, [Description("The range of colors to sort.")] params IntegrityColor[] colors)
         {
             var sorted = colors.OrderByDescending(x => x, new ColorComparer()).ToList();
 

@@ -6,6 +6,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<SignAssembly>False</SignAssembly>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<AssemblyName>ColorConsole</AssemblyName>
+		<ApplicationIcon>colorconsole.ico</ApplicationIcon>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace ColorConsole.Commands.Modules
         [PrePadding, PostPadding]
         public async void Help()
         {
-            var commands = Manager.GetCommands().Where(x => !x.FullName.Contains("help")).OrderBy(x => x.Name).ThenBy(x => x.Arguments.Length);
+            var commands = Manager.GetCommands().Where(x => !x.FullName.Contains("help")).OrderBy(x => x.FullName).ThenBy(x => x.Arguments.Length);
 
             var table = new Table()
                 .Title("All commands")
