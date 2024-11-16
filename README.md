@@ -8,6 +8,8 @@ A .NET console application created for creating gradients without too much effor
 
 ColorConsole is intended to be an application that is understandable, helpful and easy to use. It supports:
 
+- [x] 💧 Picking colors from cursor position
+
 - [x] 🎨 Displaying color information
 
 - [x] 📃 Getting a list of available system colors by name
