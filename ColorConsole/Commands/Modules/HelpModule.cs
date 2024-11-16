@@ -1,4 +1,5 @@
-﻿using Commands;
+﻿using ColorConsole.Commands.Attributes;
+using Commands;
 using Commands.Reflection;
 using Spectre.Console;
 using System.ComponentModel;
@@ -8,10 +9,9 @@ namespace ColorConsole.Commands.Modules
     [Name("help")]
     public class HelpModule : ConsoleModuleBase<ColorConsumer>
     {
+        [PrePadding, PostPadding]
         public async void Help()
         {
-            await Send();
-
             var commands = Manager.GetCommands().Where(x => !x.FullName.Contains("help")).OrderBy(x => x.Name).ThenBy(x => x.Arguments.Length);
 
             var table = new Table()

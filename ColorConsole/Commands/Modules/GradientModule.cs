@@ -1,4 +1,5 @@
 ﻿using ColorConsole.Colors;
+using ColorConsole.Commands.Attributes;
 using ColorConsole.Extensions;
 using ColorConsole.Formatting;
 using Commands;
@@ -112,8 +113,6 @@ namespace ColorConsole.Commands.Modules
             }
             else
                 await Send("[grey]Skipped copying to clipboard.[/]");
-
-            await Send();
         }
 
         private static (System.Drawing.Color, System.Drawing.Color) HexGeneration()

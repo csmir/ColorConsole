@@ -1,4 +1,5 @@
 ﻿using ColorConsole.Colors;
+using ColorConsole.Commands.Attributes;
 using ColorConsole.Extensions;
 using Commands;
 using Spectre.Console;
@@ -11,11 +12,10 @@ namespace ColorConsole.Commands.Modules
     {
         [Name("breakdown")]
         [Description("Shows a breakdown of the provided color.")]
+        [PrePadding, PostPadding]
         public async Task Get(
             [Description("The color to provide a breakdown of.")] IntegrityColor color)
         {
-            await Send();
-
             var spectreColor = color.Color.ToSpectreColor();
 
             var table = new Table()
@@ -66,15 +66,13 @@ namespace ColorConsole.Commands.Modules
                 spectrumTable);
 
             await Send(table);
-            await Send();
         }
 
         [Name("list")]
         [Description("Lists all available colors to the system by name.")]
+        [PrePadding, PostPadding]
         public async Task List()
         {
-            await Send();
-
             var colors = Spectrum.GetSortedSpectrum().Items;
 
             var table = new Table()
@@ -102,16 +100,22 @@ namespace ColorConsole.Commands.Modules
             }
 
             await Send(table);
-            await Send();
         }
 
         [Name("sort")]
         [Description("Sorts a range of colors into a sorted spectrum.")]
-        public async Task Sort([Description("The range of colors to sort.")] params IntegrityColor[] colors)
+        [PrePadding, PostPadding]
+        public Task Sort([Name("gradient-steps")] int gradientSteps = 3)
         {
-            await Send();
+            return Sort(gradientSteps, [.. Spectrum.GetSortedSpectrum().Items]);
+        }
 
-            var sorted = colors.OrderByDescending(x => x, new ColorComparer());
+        [Name("sort")]
+        [Description("Sorts a range of colors into a sorted spectrum.")]
+        [PrePadding, PostPadding]
+        public async Task Sort([Name("gradient-steps")] int gradientSteps, [Description("The range of colors to sort.")] params IntegrityColor[] colors)
+        {
+            var sorted = colors.OrderByDescending(x => x, new ColorComparer()).ToList();
 
             var table = new Table()
                 .Title("Sorted all provided colors:")
@@ -124,18 +128,34 @@ namespace ColorConsole.Commands.Modules
                 .LeftAlignLabel()
                 .ShowValues(false);
 
-            foreach (var color in sorted)
+            for (var i = 0; i < sorted.Count; i++)
             {
-                barChart.AddItem(
-                    label: $"{color.ToString(DisplayType.RGB)} ({color.ToString(DisplayType.Hex)})",
-                    value: 100,
-                    color: color.Color.ToSpectreColor());
+                var color = sorted[i];
+
+                if (gradientSteps > 0 && i + 1 != sorted.Count)
+                {
+                    var gradient = color.Color.GenerateGradient(sorted[i + 1].Color, gradientSteps).ToArray();
+
+                    foreach (IntegrityColor item in gradient[..^1])
+                    {
+                        barChart.AddItem(
+                            label: $"{item.ToString(DisplayType.RGB)} ({item.ToString(DisplayType.Hex)})",
+                            value: 100,
+                            color: item.Color.ToSpectreColor());
+                    }
+                }
+                else
+                {
+                    barChart.AddItem(
+                        label: $"{color.ToString(DisplayType.RGB)} ({color.ToString(DisplayType.Hex)})",
+                        value: 100,
+                        color: color.Color.ToSpectreColor());
+                }
             }
 
             table.AddRow(barChart);
 
             await Send(table);
-            await Send();
         }
 
         private static Markup GetMarkup(List<IntegrityColor> colors, int targetIndex)
