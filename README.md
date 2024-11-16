@@ -2,7 +2,7 @@
 
 A Windows console application written in c# that empowers users with versatile color tools 
 
-> ⚒️ Uses [Spectre.Console](https://github.com/spectreconsole/Spectre.Console) to beautify the application!
+> ⚒️ Uses [Commands.NET](https://github.com/csmir/Commands.NET) and [Spectre.Console](https://github.com/spectreconsole/Spectre.Console) to enhance the application!
 
 ----
 
