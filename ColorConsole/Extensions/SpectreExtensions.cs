@@ -32,13 +32,13 @@ namespace ColorConsole.Extensions
                 .AddColumn("Value")
                 .AddRow(
                     new Markup("RGB"),
-                    new Markup(color.ToString(ColorType.RGB)))
+                    new Markup(color.ToString(DisplayType.RGB)))
                 .AddRow(
                     new Markup("Hex"),
-                    new Markup(color.ToString(ColorType.Hex)))
+                    new Markup(color.ToString(DisplayType.Hex)))
                 .AddRow(
                     new Markup("UInt32"),
-                    new Markup(color.ToString(ColorType.UInt32)));
+                    new Markup(color.ToString(DisplayType.UInt32)));
         }
     }
 }

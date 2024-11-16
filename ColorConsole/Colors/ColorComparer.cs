@@ -4,11 +4,7 @@
     {
         public int Compare(IntegrityColor x, IntegrityColor y)
         {
-            if (x.Integrity > y.Integrity)
-                return 1;
-            if (x.Integrity < y.Integrity)
-                return -1;
-            return 0;
+            return (int)(x.Integrity - y.Integrity);
         }
     }
 }

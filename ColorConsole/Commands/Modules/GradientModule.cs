@@ -10,16 +10,15 @@ using System.Drawing;
 namespace ColorConsole.Commands.Modules
 {
     [Name("gradient")]
-    [SupportedPlatform("windows")]
     public class GradientModule : ConsoleModuleBase<ColorConsumer>
     {
         [Description("Generates a color gradient between two colors from an interactive prompt.")]
         public Task Get()
         {
             var type = Select(
-                new SelectionPrompt<ColorType>()
+                new SelectionPrompt<DisplayType>()
                     .PageSize(4)
-                    .AddChoices(Enum.GetValues<ColorType>())
+                    .AddChoices(Enum.GetValues<DisplayType>())
                     .Title("[grey]What color format do you want to use?[/]")
                     .MoreChoicesText("[grey](Move up and down to reveal more options)[/]"));
 
@@ -28,15 +27,15 @@ namespace ColorConsole.Commands.Modules
 
         [Description("Generates a color gradient of the specified type between two colors from an interactive prompt.")]
         public Task Get(
-            [Description("The manner in which the colors for the gradient will be specified.")] ColorType colorType)
+            [Description("The manner in which the colors for the gradient will be specified.")] DisplayType colorType)
         {
             var pointerColors = colorType switch
             {
-                ColorType.Name => NameGeneration(),
-                ColorType.RGB => RGBGeneration(),
-                ColorType.Hex => HexGeneration(),
-                ColorType.UInt32 => UInt32Generation(),
-                ColorType.Random => NameGeneration(true),
+                DisplayType.Name => NameGeneration(),
+                DisplayType.RGB => RGBGeneration(),
+                DisplayType.Hex => HexGeneration(),
+                DisplayType.UInt32 => UInt32Generation(),
+                DisplayType.Random => NameGeneration(true),
                 _ => throw new NotImplementedException()
             };
 

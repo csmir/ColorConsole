@@ -1,6 +1,6 @@
 ﻿namespace ColorConsole.Colors
 {
-    public enum ColorType
+    public enum DisplayType
     {
         RGB,
 

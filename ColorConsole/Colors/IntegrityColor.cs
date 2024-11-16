@@ -47,18 +47,18 @@ namespace ColorConsole.Colors
             => Create(color);
 
         public override string ToString()
-            => ToString(ColorType.Hex);
+            => ToString(DisplayType.Hex);
 
-        public string ToString(ColorType type)
+        public string ToString(DisplayType type)
         {
             switch (type)
             {
-                case ColorType.UInt32:
+                case DisplayType.UInt32:
                     string hexValue = $"{R:X2}{G:X2}{B:X2}";
                     return Convert.ToUInt32(hexValue, 16).ToString();
-                case ColorType.Hex:
+                case DisplayType.Hex:
                     return $"{R:X2}{G:X2}{B:X2}";
-                case ColorType.RGB:
+                case DisplayType.RGB:
                     return $"{R}, {G}, {B}";
                 default:
                     throw new NotImplementedException();

@@ -51,8 +51,8 @@ namespace ColorConsole.Commands.Modules
 
                 spectrumTable.AddRow(
                     new Markup($"{item.Color.Name}", style),
-                    new Markup($"{item.ToString(ColorType.Hex)}", style),
-                    new Markup($"{item.ToString(ColorType.RGB)}", style),
+                    new Markup($"{item.ToString(DisplayType.Hex)}", style),
+                    new Markup($"{item.ToString(DisplayType.RGB)}", style),
                     new Markup($"{item.Integrity}", style));
             }
 
@@ -127,7 +127,7 @@ namespace ColorConsole.Commands.Modules
             foreach (var color in sorted)
             {
                 barChart.AddItem(
-                    label: $"{color.ToString(ColorType.RGB)} ({color.ToString(ColorType.Hex)})",
+                    label: $"{color.ToString(DisplayType.RGB)} ({color.ToString(DisplayType.Hex)})",
                     value: 100,
                     color: color.Color.ToSpectreColor());
             }
