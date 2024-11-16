@@ -1,12 +1,14 @@
 # ColorConsole - An efficient color inspector and gradient generator.
 
-A .NET console application created for creating gradients without too much effort.
+A Windows console application written in c# that empowers users with versatile color tools 
 
-> ⚒️ Uses [Spectre.Console](https://github.com/spectreconsole/Spectre.Console) to beautify the application!
+> ⚒️ Uses [Commands.NET](https://github.com/csmir/Commands.NET) and [Spectre.Console](https://github.com/spectreconsole/Spectre.Console) to enhance the application!
 
 ----
 
 ColorConsole is intended to be an application that is understandable, helpful and easy to use. It supports:
+
+- [x] 💧 Picking colors from cursor position
 
 - [x] 🎨 Displaying color information
 
